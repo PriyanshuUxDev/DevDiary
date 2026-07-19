@@ -60,7 +60,7 @@ public class AiService {
             return extractTags(response.text());
         } catch (Exception e) {
             log.error("Gemini error during tagging: {}", e.getMessage());
-            return List.of("uncategorized");
+            return new ArrayList<>(List.of("uncategorized"));
         }
     }
 
@@ -75,7 +75,7 @@ public class AiService {
             return tags.isEmpty() ? List.of("uncategorized") : tags;
         } catch (Exception e) {
             log.error("Failed to parse Gemini tags JSON: {}", e.getMessage());
-            return List.of("uncategorized");
+            return new ArrayList<>(List.of("uncategorized"));
         }
     }
 }

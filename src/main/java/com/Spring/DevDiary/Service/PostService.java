@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,7 +49,7 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found: " + id));
         List<String> tags = aiService.generateTags(post.getContent());
-        post.setTags(tags);
+        post.setTags(new ArrayList<>(tags));
         return postRepository.save(post);
     }
     public Post createPost(Post post){

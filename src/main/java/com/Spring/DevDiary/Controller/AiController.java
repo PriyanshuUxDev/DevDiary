@@ -12,7 +12,9 @@ public class AiController {
 
     @PostMapping("/summarize")
     public String summarize(@RequestBody String content) {
-        String prompt = "Summarize the following blog post in 2-3 sentences:\n\n" + content;
+        String prompt = "Summarize the following blog post in 2-3 plain sentences. " +
+                "Do not repeat or quote the title. Do not use quotation marks. " +
+                "Start directly with the summary content:\n\n" + content;
         return aiService.summarize(prompt);
     }
 
