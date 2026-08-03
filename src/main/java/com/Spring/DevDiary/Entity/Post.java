@@ -1,9 +1,10 @@
-package com.Spring.DevDiary.Model;
+package com.Spring.DevDiary.Entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,13 @@ public class Post {
 
     @OneToMany
     private List<Comment> comments = new ArrayList<>();
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 
 }

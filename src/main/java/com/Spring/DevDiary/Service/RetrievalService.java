@@ -1,6 +1,6 @@
 package com.Spring.DevDiary.Service;
 
-import com.Spring.DevDiary.Model.Post;
+import com.Spring.DevDiary.Entity.Post;
 import com.Spring.DevDiary.Repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

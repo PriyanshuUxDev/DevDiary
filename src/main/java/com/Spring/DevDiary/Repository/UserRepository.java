@@ -1,6 +1,6 @@
 package com.Spring.DevDiary.Repository;
 
-import com.Spring.DevDiary.Model.User;
+import com.Spring.DevDiary.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

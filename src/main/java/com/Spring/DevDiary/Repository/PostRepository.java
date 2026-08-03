@@ -1,6 +1,6 @@
 package com.Spring.DevDiary.Repository;
 
-import com.Spring.DevDiary.Model.Post;
+import com.Spring.DevDiary.Entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

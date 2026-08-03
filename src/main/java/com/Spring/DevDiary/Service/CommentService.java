@@ -1,6 +1,6 @@
 package com.Spring.DevDiary.Service;
 
-import com.Spring.DevDiary.Model.Comment;
+import com.Spring.DevDiary.Entity.Comment;
 import com.Spring.DevDiary.Repository.CommentRepository;
 import org.springframework.stereotype.Service;
 

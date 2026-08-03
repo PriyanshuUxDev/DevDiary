@@ -1,15 +1,20 @@
 package com.Spring.DevDiary.Controller;
 
+import com.Spring.DevDiary.DTO.auth.RegisterRequestDTO;
 import com.Spring.DevDiary.Service.UserAuthService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class UserAuthController {
 
-    @Autowired
-   private UserAuthService userAuthService;
+    private final UserAuthService userAuthService;
 
-
-
+    @PostMapping("/register")
+    public String register(@Valid @RequestBody RegisterRequestDTO request) {
+        return userAuthService.register(request);
+    }
 }

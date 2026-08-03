@@ -1,6 +1,6 @@
 package com.Spring.DevDiary.Repository;
 
-import com.Spring.DevDiary.Model.Category;
+import com.Spring.DevDiary.Entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
