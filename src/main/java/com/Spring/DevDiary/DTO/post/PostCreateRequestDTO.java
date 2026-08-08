@@ -1,6 +1,7 @@
 package com.Spring.DevDiary.DTO.post;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +17,9 @@ public class PostCreateRequestDTO {
     @NotBlank(message = "Content is required")
     private String content;
 
+    @NotNull(message = "Category ID is required")
     private Long categoryId;
+
+    @NotNull(message = "User ID is required")
+    private Long userId;
 }

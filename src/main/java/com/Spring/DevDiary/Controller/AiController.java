@@ -1,5 +1,7 @@
 package com.Spring.DevDiary.Controller;
 
+import com.Spring.DevDiary.DTO.AI.ChatRequestDTO;
+import com.Spring.DevDiary.DTO.AI.ChatResponseDTO;
 import com.Spring.DevDiary.Service.AiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,11 @@ public class AiController {
                 "Do not repeat or quote the title. Do not use quotation marks. " +
                 "Start directly with the summary content:\n\n" + content;
         return aiService.summarize(prompt);
+    }
+
+    @PostMapping("/ask")
+    public ChatResponseDTO ask(@RequestBody ChatRequestDTO request) {
+        return aiService.answerQuestion(request.getQuestion());
     }
 
 }

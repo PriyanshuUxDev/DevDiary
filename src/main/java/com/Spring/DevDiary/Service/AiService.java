@@ -1,5 +1,7 @@
 package com.Spring.DevDiary.Service;
 
+import com.Spring.DevDiary.DTO.AI.ChatResponseDTO;
+import com.Spring.DevDiary.Entity.Post;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.genai.Client;
@@ -77,5 +79,33 @@ public class AiService {
             log.error("Failed to parse Gemini tags JSON: {}", e.getMessage());
             return new ArrayList<>(List.of("uncategorized"));
         }
+    }
+
+    private final RetrievalService retrievalService;
+
+    public ChatResponseDTO answerQuestion(String question) {
+        List<Post> relevantPosts = retrievalService.retrieveRelevantPosts(question);
+
+        if (relevantPosts.isEmpty()) {
+            return new ChatResponseDTO(question, "I couldn't find anything relevant in the posts to answer that.");
+        }
+
+        StringBuilder context = new StringBuilder();
+        for (Post post : relevantPosts) {
+            context.append("Title: ").append(post.getTitle())
+                    .append("\nContent: ").append(post.getContent()).append("\n\n");
+        }
+
+        String prompt = """
+        Answer the question using ONLY the context below. If the answer isn't in the context, say so.
+
+        Context:
+        %s
+
+        Question: %s
+        """.formatted(context.toString(), question);
+
+        String answer = askAI(prompt);
+        return new ChatResponseDTO(question, answer);
     }
 }

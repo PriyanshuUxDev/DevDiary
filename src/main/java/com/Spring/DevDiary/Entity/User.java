@@ -19,14 +19,14 @@ public class User {
     @Column(name="ID")
     private Long userId;
 
-    @Column(name = "UserName")
-    private String UserName;
+    @Column(name = "userName")
+    private String userName;
 
-    @Column(name="Email")
-    private String Email;
+    @Column(name="email")
+    private String email;
 
-    @Column(name = "Password")
-    private String Password;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany
     private List<Comment> comment=new ArrayList<>();

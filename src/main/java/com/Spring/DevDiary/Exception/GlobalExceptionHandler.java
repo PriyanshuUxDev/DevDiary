@@ -43,4 +43,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
     }
+
+    @ExceptionHandler(DuplicateUserException.class)
+    public ResponseEntity<String> handleDuplicateUser(DuplicateUserException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    }
 }

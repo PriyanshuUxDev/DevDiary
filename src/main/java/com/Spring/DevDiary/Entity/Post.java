@@ -24,7 +24,7 @@ public class Post {
     private String content;
 
     @JoinColumn(name = "CategoryId")
-    @OneToOne
+    @ManyToOne
     private Category category;
 
     @Column(columnDefinition = "LONGTEXT")
