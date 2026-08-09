@@ -87,13 +87,15 @@ public class AiService {
         List<Post> relevantPosts = retrievalService.retrieveRelevantPosts(question);
 
         if (relevantPosts.isEmpty()) {
-            return new ChatResponseDTO(question, "I couldn't find anything relevant in the posts to answer that.");
+            return new ChatResponseDTO(question, "I couldn't find anything relevant in the posts to answer that.", List.of());
         }
 
         StringBuilder context = new StringBuilder();
+        List<String> sourceTitles = new ArrayList<>();
         for (Post post : relevantPosts) {
             context.append("Title: ").append(post.getTitle())
                     .append("\nContent: ").append(post.getContent()).append("\n\n");
+            sourceTitles.add(post.getTitle());
         }
 
         String prompt = """
@@ -106,6 +108,6 @@ public class AiService {
         """.formatted(context.toString(), question);
 
         String answer = askAI(prompt);
-        return new ChatResponseDTO(question, answer);
+        return new ChatResponseDTO(question, answer, sourceTitles);
     }
 }
