@@ -1,0 +1,138 @@
+{
+  "info": {
+    "name": "DevDiary API",
+    "description": "AI-powered developer blog platform with Spring Boot, MySQL, and Gemini AI integration (auto-summarize, auto-tag, RAG-based chatbot, analytics).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://devdiary-production-6c12.up.railway.app",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"ansh\",\n  \"email\": \"ansh@gmail.com\",\n  \"password\": \"test1234\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "register"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Movie\",\n  \"description\": \"Movie related posts\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/category", "host": ["{{baseUrl}}"], "path": ["api", "category"] }
+          }
+        },
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/category", "host": ["{{baseUrl}}"], "path": ["api", "category"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Spider-Man: Brand New Day\",\n  \"content\": \"Spider-Man: Brand New Day follows Peter Parker as he protects New York City full-time...\",\n  \"userId\": 2,\n  \"categoryId\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/post", "host": ["{{baseUrl}}"], "path": ["api", "post"] }
+          }
+        },
+        {
+          "name": "Get Post By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/post/1", "host": ["{{baseUrl}}"], "path": ["api", "post", "1"] }
+          }
+        },
+        {
+          "name": "Get All Posts",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/post", "host": ["{{baseUrl}}"], "path": ["api", "post"] }
+          }
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/api/post/1", "host": ["{{baseUrl}}"], "path": ["api", "post", "1"] }
+          }
+        },
+        {
+          "name": "Summarize Post",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/api/post/1/summarize", "host": ["{{baseUrl}}"], "path": ["api", "post", "1", "summarize"] }
+          }
+        },
+        {
+          "name": "Generate Tags",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/api/post/1/tags", "host": ["{{baseUrl}}"], "path": ["api", "post", "1", "tags"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI",
+      "item": [
+        {
+          "name": "Ask Chatbot",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"what posts mention Spider-Man?\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/gemini/ask", "host": ["{{baseUrl}}"], "path": ["api", "gemini", "ask"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Analytics",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/analytics", "host": ["{{baseUrl}}"], "path": ["api", "analytics"] }
+          }
+        }
+      ]
+    }
+  ]
+}
