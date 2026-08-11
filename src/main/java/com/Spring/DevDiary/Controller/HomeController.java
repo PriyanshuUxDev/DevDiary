@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping("/")
-    public String home() {
-        return "DevDiary API is running. See /api/post, /api/auth, /api/gemini/ask, /api/analytics for endpoints.";
+    @GetMapping("/health")
+    public String health() {
+        return "DevDiary API is running";
     }
 }
