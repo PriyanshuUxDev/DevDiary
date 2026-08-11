@@ -1,6 +1,5 @@
 package com.Spring.DevDiary.Controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,34 +8,42 @@ import java.util.Map;
 
 @RestController
 public class HomeController {
-    
-        @GetMapping("/")
-        public ResponseEntity<Map<String, Object>> home() {
 
-            Map<String, Object> response = new LinkedHashMap<>();
+    @GetMapping("/")
+    public Map<String, Object> home() {
 
-            response.put("name", "DevDiary API");
-            response.put("message", "Welcome to DevDiary API 🚀");
-            response.put("version", "1.0");
+        Map<String, String> endpoints = new LinkedHashMap<>();
 
-            Map<String, String> endpoints = new LinkedHashMap<>();
+        endpoints.put("Health", "GET /health");
 
-            endpoints.put("Health", "GET /health");
-            endpoints.put("Blogs", "GET /api/blogs");
-            endpoints.put("Get Blog", "GET /api/blogs/{id}");
-            endpoints.put("Create Blog", "POST /api/blogs");
-            endpoints.put("Update Blog", "PUT /api/blogs/{id}");
-            endpoints.put("Delete Blog", "DELETE /api/blogs/{id}");
-            endpoints.put("Ask AI", "POST /api/ask");
+        // Authentication
+        endpoints.put("Register", "POST /api/auth/register");
 
-            response.put("endpoints", endpoints);
+        // Categories
+        endpoints.put("Create Category", "POST /api/category");
+        endpoints.put("Get All Categories", "GET /api/category");
 
-            return ResponseEntity.ok(response);
-        }
+        // Posts
+        endpoints.put("Create Post", "POST /api/post");
+        endpoints.put("Get All Posts", "GET /api/post");
+        endpoints.put("Get Post By Id", "GET /api/post/{id}");
+        endpoints.put("Delete Post", "DELETE /api/post/{id}");
+        endpoints.put("Summarize Post", "POST /api/post/{id}/summarize");
+        endpoints.put("Generate Tags", "POST /api/post/{id}/tags");
 
-        @GetMapping("/health")
-        public ResponseEntity<String> health() {
-            return ResponseEntity.ok("UP");
-        }
+        // AI
+        endpoints.put("Ask Chatbot", "POST /api/gemini/ask");
 
+        // Analytics
+        endpoints.put("Get Analytics", "GET /api/analytics");
+
+        Map<String, Object> response = new LinkedHashMap<>();
+
+        response.put("name", "DevDiary API");
+        response.put("message", "Welcome to DevDiary API 🚀");
+        response.put("version", "1.0");
+        response.put("endpoints", endpoints);
+
+        return response;
+    }
 }
